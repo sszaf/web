@@ -8,7 +8,6 @@
     <title>Newsletter informacyjny</title>
 </head>
 <body>
-    <center>
     <h1>UZUPEŁNIJ ABY DOŁĄCZYĆ DO NEWSLETTERA!</h1>
     <p>Korzystanie z newslettera zapewnia uzyskiwanie informacji na temat atrakcji na terenie całego miasta.<br>
     Wybierz interesujące Cię kategorie i spędź niezapomniany czas tak jak lubisz.</p>
@@ -30,13 +29,11 @@
     </p>
     <p>
         <label for="idPhone">Telefon:</label>
-        <input id="idPhone" name="Telefon" type="text" size="30" maxlength="9" patter="[0-9]{9}" placeholder="123456789">
+        <input id="idPhone" name="Telefon" type="text" size="30" maxlength="9" pattern="[0-9]{9}" placeholder="123456789">
     </p>
     <p>
         <label for="idMale">Mężczyzna</label>
-        <input id="idMale" name="Gender" type="radio" value="Mężczyzna">
-    </p>
-    <p>    
+        <input id="idMale" name="Gender" type="radio" value="Mężczyzna">   
         <label for="idFemale">Kobieta</label>
         <input id="idFemale" name="Gender" type="radio" value="Kobieta">
     </p>
@@ -103,12 +100,11 @@
 
 
     <p>
-        <textarea id="idTextArea" name="TextArea" maxlength="200" rows="20" columns=""></textarea>
+        <textarea id="idTextArea" name="TextArea" maxlength="200" rows="20" cols="50"></textarea>
     </p>
     <input type="submit" value="Prześlij">
     <input type="reset" value="Wyczyść">
     </form>
-    </center>
     
 </body>
 </html>
