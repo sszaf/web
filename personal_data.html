@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="Szczecin, informacja, turystyka, rozrywka, rekreacja, sport">
+    <meta name="author" content="Szymon Szafraniec, Leszek Kryzar">
+    <title>Dane Osobowe</title>
+</head>
+<body>
+    <form method="post" action="http://localhost:5500/newsletter.html" autocomplete="on">
+        <p>
+            <label for="idName">Imię:</label>
+            <input id="idName" name="Name" type="text" size="30" maxlength="25"  placeholder="Jan" autocomplete="given-name" autofocus>
+        </p>
+
+        <p>
+            <label for="idSurename">Nazwisko:</label>
+            <input id="idSurename" name="Surename" type="text" size="30" maxlength="25"  placeholder="Kowalski" autocomplete="family-name" required>
+        </p>
+
+        <p>
+            <label for="idMonthOfBirth">Wybierz miesiąc urodzenia: </label>
+            <input list="months" name="month_of_birth" id="idMonthOfBirth" placeholder="Styczeń" autocomplete="bday-month">
+
+            <datalist id="months">
+                <option value="Styczeń">
+                <option value="Luty">
+                <option value="Marzec">
+                <option value="Kwiecień">
+                <option value="Maj">
+                <option value="Czerwiec">
+                <option value="Lipiec">
+                <option value="Sierpień">
+                <option value="Wrzesień">
+                <option value="Październik">
+                <option value="Listopad">
+                <option value="Grudzień">
+            </datalist>
+        </p>
+        
+        <p>
+            <label for="idEmail">E-mail &#128231;</label>
+            <input id="idEmail" name="Email" type="email" size="30" maxlength="25" placeholder="kowalskijan@gmail.com" 
+            autocomplete="email" required>
+        </p>
+
+        <p>
+            <label for="idPhone">Telefon &phone;:</label>
+            <input id="idPhone" name="Telefon" type="tel" pattern="^\+\d{2} \d{3}-\d{3}-\d{3}$" 
+            size="30" maxlength="15" placeholder="+XX XXX-XXX-XXX" autocomplete="tel">
+        </p>
+        <input type="submit" value="Prześlij">
+        <input type="reset" value="Wyczyść">
+    </form>
+</body>
+</html>
