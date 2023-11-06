@@ -1,7 +1,71 @@
+@media screen and (prefers-color-scheme: light) {
+    body {
+    background-color: white;
+    color: black;
+    } }
+
+
+    @media only screen and (max-width: 600px){
+        body{
+            font-size: 8pt;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+    }
+    
+    @media only screen and (min-width: 600px){
+        body{
+            font-size: 10pt;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+    }
+
+    @media only screen and (min-width: 768px) {
+        body{
+            font-size: 11pt;
+            font-family:Arial, Helvetica, sans-serif;
+        }
+    }
+
+    @media only screen and (min-width: 992px){
+        body{
+            font-size: 12pt;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+    }
+
+    @media only screen and (min-width: 1200px){
+        body{
+            font-size: 14pt;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+    }
+        
 body{
+    background-color:darkslategray;
+    color: white;
+
+
     font-size: 14px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    background-color:darkseagreen
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 15px;
+}
+
+
+
+article.pogon{
+    background-color: darkblue;
+    border-width: 8px;
+    border-color: darkred;
+    border-style: double;
+    width:fit-content;
+    height: fit-content;
+}
+
+img.pogon{
+    position: static;
 }
 
 
