@@ -1,0 +1,52 @@
+body{
+    font-size: 14px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color:darkseagreen
+}
+
+
+.newsletter_page{
+    text-align: center;
+    color:aqua;
+    font-size: 18px;
+    font-weight: bolder;
+    background-image: url(szczecin_drawing.jpg);
+    background-repeat: repeat-x;
+    background-position: right top;
+    background-attachment: fixed;
+}
+
+.personal_data_page{
+    text-align: center;
+    color:black;
+    font-size: 16px;
+    font-weight: bolder;
+    background-image: url(szczecin_drawing.jpg);
+    background-color: rgba(255, 255, 255, 0.5);
+    background-repeat: repeat-x;
+    background-position: left top;
+    background-attachment: scroll;
+}
+
+h1{
+    font-size: 2.5em;
+}
+
+h2{
+    font-size: 200%;
+}
+
+h3{
+    font-size: 150%;
+}
+
+h4{
+    font-size: 1.25em;
+}
+
+footer{
+    font-style: italic;
+    font-weight: 600;
+}
+
+
