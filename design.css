@@ -53,18 +53,29 @@ body{
     }
         
 
+    .herb_container {
+        text-align: center;
+    }
+    
+    .herb_container img {
+        display: inline-block;
+    }
+    
+
 p.pogon{
     margin:50px 80px 100px 20px;
     border-color: darkred;
     border-width: 5px 15px 20px 30px;
     border-style: solid;
     padding: 30px; 
+    float: left;
 }
 
 aside.pogon{
     background-color: darkblue;
-    width: min-content;
+    width: auto;
     height: auto;
+    clear: left;
 }
 
 article.pogon{
@@ -127,6 +138,9 @@ h4{
 footer{
     font-style: italic;
     font-weight: 600;
+    position: fixed;
+    bottom: 0px;
+
 }
 
 .menu {
