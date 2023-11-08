@@ -187,4 +187,112 @@ footer{
     background-color: #555;
 }
 
+table.scheudle tr:nth-child(even) {
+    background-color: rgb(19, 177, 177);
+}
+table.scheudle th:nth-child(even),td:nth-child(even) {
+    background-color: rgba(150, 212, 212, 0.4);
+}
+table.scheudle {
+    border-collapse: collapse; 
+}
+
+table.scheudle th, table.scheudle td {
+    border: 1px solid #000; 
+}
+table.scheudle tr:hover{
+    background-color:rgb(218, 22, 22);
+}
+
+table.players {
+    margin: 0 auto; /* Wyśrodkowuje tabelę na stronie */ }
+  
+  table.players td, table.players th {
+    text-align: center; /* Wyśrodkowuje zawartość komórek w poziomie */
+    vertical-align: middle; /* Wyśrodkowuje zawartość komórek w pionie */
+  }
+  
+
+a img.pogon:active {
+     transform: scale(1.5);  /*powiekszenie obrazka pogoni przy kliknieciu główna ta co przenosi na stronę */
+}
+input[type="checkbox"]:checked + label {    /*zaznaczenie tego co jest zaznaczone w checkbox newsleter */
+    text-decoration: underline;
+    font-weight: bold;
+    color: black;
+}
+
+input:disabled {
+    background-color: lightgray;   /*zaznaczenie na szaro nieaktywnego inputu newsleter email */
+    color: #999;         
+    cursor: not-allowed;
+}
+
+p.empty:empty {
+    background-color: lightyellow;
+    border: 1px solid #ccc;    /* jak coś jest puste pogon pozostałe spotkania */
+    padding: 10px;
+}
+form.newsletter :enabled {
+    background-color: lightgreen;
+    border: 1px solid #4CAF50;       /* jak input aktywny w neleter to na zielono */
+    color: #4CAF50;
+}
+
+
+a:visited {
+    color: purple; 
+    text-decoration: line-through; 
+  }
+  #section1:target {
+    background-color: yellow; /* strona pogoni */
+    color: black; 
+  }
+  input:required {
+    border: 2px solid red; /* Czerwone obramowanie dla wymaganych pól */
+  }
+  .container p:only-child {
+    color: blue;         /* jak jest tylko jedeno dziecko rodzica pogon nadchodzące mecze */
+    font-weight: bold;
+  }
+  .scorers li:nth-last-child(2) {
+    background-color: yellow;  /* przedostatni element tej listy na zółto */
+  }
+
+   ol:not(.test){
+    color: red;  /* oreder listy króre nie należą do klasy test na czerwono */
+  }
+  
+  a:link{
+    color: pink;  /* olinki na różowo */
+  }
+
+ .last p:last-of-type {
+    color: red;         /* ostatni paragraf w tej klasie na czerwono pogon doł linki */
+    font-style: italic;   
+  }
+  .scorers li:last-child{
+    background-color: aqua;   /* ostatni element w tej liscie na aqua */
+  }
+  .scorers li:first-child{
+    background-color: rgb(255, 149, 0);   /* ostatni element w tej liscie na aqua */
+  }
+
+  input.personal:focus {
+    background-color: lightyellow;  /* w personal data imie sie na żółto ramka wewnątrz  */
+  }
+
+  @page :first {
+    margin-left: 50%;
+    margin-top: 50%;
+  }
+  
+  
+
+
+
+
+
+
+
 
