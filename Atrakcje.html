@@ -6,11 +6,12 @@
   <meta name="keywords" content="Szczecin, zabytki, atrakcje, czas wolny">
   <meta name="author" content="Szymon Szafraniec, Leszek Kryzar">
   <link rel="stylesheet" href="design.css">
-  <script src="scripts.js" defer></script>
+  <script src="atrakcje.js" defer></script>
   <title>Atrakcje Szczecina</title>
 </head>
 <body>
   <h1>Atrakcje Szczecina</h1>
+  <button id="randomAttractionButton">Losowa atrakcja</button>
   <img src="Grodzka.jpg" alt="Panorama Szczecina">
   <p><strong>Szczecin</strong> - Miasto Nad Odrą Pełne Atrakcji</p>
 <p>
@@ -83,7 +84,7 @@
     </li>
     <li>
       <figure>
-        <h3>Bazylika Archikatedralna pw. św. Jakuba Apostoła</h3>
+        <h3 id="bazylika">Bazylika Archikatedralna pw. św. Jakuba Apostoła</h3>
         <img src="zamek.jpg" alt="Katedra w Szczecin" width ="300" height="240">
         <figcaption>Główny kościół rzymskokatolicki Szczecina</figcaption>
       </figure>
@@ -114,7 +115,7 @@
     </li>
     <li>
       <figure>
-      <h3>Morskie Centrum Nauki</h3>
+      <h3 id="centrum_morskie">Morskie Centrum Nauki</h3>
         <img src="morskie.jpg" alt="Centrum Morskie w Szczecinie" width ="300" height="240">
         <figcaption>Miejsce poświęcone zagadnieniom związanym z morzem i oceanem</figcaption>
       </figure>
@@ -210,7 +211,7 @@
       </td>
       </tr>
     </table>
-  <h3>SUGESTIE UŻYTKOWNIKÓW</h3>
+  <h3>Moja Lista</h3>
   <input id="attractionInsertInput" type="text">
   <button id="attractionInsertButton">PRZEŚLIJ</button>
   <ul id="attractionList"></ul>
