@@ -300,6 +300,47 @@ a:visited {
     margin-left: 50%;
     margin-top: 50%;
   }
+  .buttonGame {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.buttonGame:hover {
+    background-color: #45a049;
+}
+
+.buttonGame:active {
+    background-color: #398439;
+}
+.buttonCheck {
+    background-color: #3498db; /* Niebieskie tło */
+    color: white; /* Biały tekst */
+    padding: 10px 20px; /* Wewnętrzny odstęp */
+    font-size: 16px; /* Rozmiar tekstu */
+    border: none; /* Brak obramowania */
+    border-radius: 5px; /* Zaokrąglone rogi */
+    cursor: pointer; /* Zmiana kształtu kursora na wskaźnik */
+  }
+  
+  .buttonCheck:hover {
+    background-color: #2980b9; /* Kolor tła po najechaniu myszką */
+  }
+  
+  .buttonCheck:active {
+    background-color: #21618c; /* Kolor tła podczas kliknięcia */
+  }
+  .game{
+    background-color: #999;
+  }
   
   
 
