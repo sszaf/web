@@ -30,13 +30,16 @@ function setStyles() {
     const savedFontFamily = localStorage.getItem('fontFamily');
     if (savedBackgroundColor) {
         document.body.style.backgroundColor = savedBackgroundColor;
+        document.getElementById('bg_color_input').value = savedBackgroundColor;
       }
 
       if (savedTextColor) {
         document.body.style.color = savedTextColor;
+        document.getElementById('text_color_input').value = savedTextColor;
       }
 
       if (savedFontFamily) {
         document.body.style.fontFamily = savedFontFamily;
+        document.getElementById('font_family_input').value = savedFontFamily;
       }
 }
