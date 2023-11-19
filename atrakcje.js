@@ -1,5 +1,12 @@
 const attractionInsertInput = document.getElementById("attractionInsertInput");
+const combineListsButton = document.getElementById("combineListsButton");
     const attractionList = document.getElementById("attractionList");
+    const suggestionList = document.getElementById("suggestedAttractions");
+    const deleteButton = document.getElementById("deleteButton");
+    const replaceButton = document.getElementById("replaceButton");
+    const combinedList = document.getElementById("combinedList");
+    const addTextButton = document.getElementById("addTextButton");
+    const resetListButton = document.getElementById("resetListButton");
     const attractionInsertButton = document.getElementById(
         "attractionInsertButton"
         );
@@ -9,6 +16,11 @@ const attractionInsertInput = document.getElementById("attractionInsertInput");
     
     attractionInsertButton.addEventListener("click", insertAttraction);
     randomAttractionButton.addEventListener("click",scrollToRandomAttraction);
+    combineListsButton.addEventListener("click",combineAttractions);
+    deleteButton.addEventListener("click",deleteSelected);
+    replaceButton.addEventListener("click",replaceItem);
+    addTextButton.addEventListener("click",addText);
+    resetListButton.addEventListener("click",resetList);
     
     
     function insertAttraction() {
@@ -78,3 +90,97 @@ const attractionInsertInput = document.getElementById("attractionInsertInput");
 
 
     }
+
+
+    function combineAttractions() {
+        const page_attr = suggestionList.querySelectorAll("li > figure > h3");
+        const user_attr = attractionList.querySelectorAll("li");
+        const all_attr = [...page_attr,...user_attr];
+
+        all_attr.forEach((item, index) => {
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.id = `item${index + 1}`;
+            checkbox.name = 'items';
+            checkbox.value = `item${index + 1}`;
+        
+            const label = document.createElement('label');
+            label.setAttribute('for', `item${index + 1}`);
+            label.textContent = `${index+1}. ` + item.textContent;
+        
+            const listItem = document.createElement('li');
+            listItem.appendChild(checkbox);
+            listItem.appendChild(label);
+        
+            combinedList.appendChild(listItem);
+
+    }
+
+)}
+
+
+function deleteSelected() {
+    const checkboxes = combinedList.querySelectorAll('li input[type="checkbox"]');
+    
+    checkboxes.forEach(checkbox => {
+      if (checkbox.checked) {
+        const listItem = checkbox.parentElement;
+        listItem.remove();
+      }
+    });
+}
+
+function replaceItem() {
+    const selectedListItem = combinedList.querySelectorAll('li input[type="checkbox"]:checked');
+    if(selectedListItem) {
+    const newValue = window.prompt('Wprowadź nową wartość:', ''); 
+    selectedListItem.forEach(item => {
+        if (newValue) {
+            const newListItem = document.createElement('li');
+            
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+
+            const label = document.createElement('label');
+            label.textContent = newValue;
+
+            newListItem.appendChild(checkbox);
+            newListItem.appendChild(label);
+
+            
+            combinedList.replaceChild(newListItem, item.parentElement);
+        } else {
+            window.alert("Błędne wejście!");
+        }
+        } 
+    )} else {
+    window.alert('Nie zaznaczono żadnej opcji.');
+    }
+}
+
+
+
+function addText() {
+    const newValue = window.prompt('Wprowadź teskt: ');
+  
+    if (newValue) {
+      const newListItem = document.createElement('li');
+      const textNode = document.createTextNode(newValue);
+      newListItem.appendChild(textNode);
+  
+      const firstItem = combinedList.firstChild; 
+      combinedList.insertBefore(newListItem, firstItem); 
+    } else {
+      window.alert('Nieprawidłowe wejście!');
+    }
+}
+
+
+function resetList() {
+    const listElements = combinedList.querySelectorAll("li");
+
+    listElements.forEach(item =>{
+        combinedList.removeChild(item);
+    })
+}
+  
