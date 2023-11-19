@@ -121,10 +121,12 @@ img.pogon{
 
 h1{
     font-size: 2.5em;
+    text-align: center;
 }
 
 h2{
     font-size: 200%;
+    text-align: center;
 }
 
 h3{
@@ -341,8 +343,23 @@ a:visited {
   .game{
     background-color: #999;
   }
-  
-  
+
+ #preferences_container {
+    text-align: center;
+    margin-top: 50px;
+ }
+
+ .text_color_setup {
+    margin-top: 20px;
+ }
+
+ .bg_color_setup {
+    margin-top: 20px;
+ }
+
+ .font_family_setup {
+    margin-top: 20px;
+ }
 
 
 
