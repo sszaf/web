@@ -1,17 +1,17 @@
 const autoCompleteButton = document.getElementById("completeButton");
-autoCompleteButton.addEventListener("click",completeForm);
+autoCompleteButton.addEventListener("click", completeForm);
 
 function completeForm() {
     const forms = document.forms;
-    console.log("FORMS ON PAGE: ",forms.length);
+    console.log("FORMS ON PAGE: ", forms.length);
 
-    const form = forms[0];
+    const form = forms.namedItem("personalDataForm");
 
-    if(form) {
+    if (form) {
         form.idName.value = "Jan";
         form.idSurname.value = "Kowalski";
         form.idMonthOfBirth.value = "Styczeń";
-        form.idEmail.value = "kowalskij@gmail.com"
+        form.idEmail.value = "kowalskij@gmail.com";
         form.idPhone.value = "+48 999-999-999";
     }
 }
