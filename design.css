@@ -359,7 +359,12 @@ a:visited {
  .font_family_setup {
     margin-top: 20px;
  }
-
+ .helpP{
+    display: none;
+ }
+.ciekawostka {
+    display: none;
+}
 
 
 

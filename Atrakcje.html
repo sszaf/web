@@ -7,14 +7,15 @@
   <meta name="author" content="Szymon Szafraniec, Leszek Kryzar">
   <link rel="stylesheet" href="design.css">
   <script src="atrakcje.js" defer></script>
+  <script src="zad4js2.js" defer></script>
   <title>Atrakcje Szczecina</title>
 </head>
-<body>
+<body id="atrakcje">
   <h1>Atrakcje Szczecina</h1>
   <button id="randomAttractionButton">Losowa atrakcja</button>
-  <img src="Grodzka.jpg" alt="Panorama Szczecina">
+  <img src="Grodzka.jpg" alt="Panorama Szczecina" id="img_ZS">
   <p><strong>Szczecin</strong> - Miasto Nad Odrą Pełne Atrakcji</p>
-<p>
+<p id="atrakcje_text">
     <mark>Szczecin</mark>, stolica województwa zachodniopomorskiego, to miasto bogate w historię, kulturę i niezliczone atrakcje, które przyciągają zarówno turystów z kraju, jak i zagranicy. Położone nad rzeką Odrą, <mark>Szczecin</mark> jest znane nie tylko ze swojego pięknego położenia, ale także z fascynujących miejsc wartych odwiedzenia.
     Nie sposób opisać wszystkich atrakcji, które Szczecin ma do zaoferowania, ale niektóre z nich stanowią prawdziwe perełki regionu. Od zamków i pałaców, po muzea, parki i wydarzenia kulturalne, Szczecin przyciąga każdego, kto pragnie odkrywać nowe miejsca.
     Czy jesteś miłośnikiem historii i architektury? Zamek Książąt Pomorskich z pewnością Cię zafascynuje. A może jesteś pasjonatem sztuki? Muzeum Narodowe w Szczecinie posiada bogate zbiory, które zaspokoją Twoje ciekawości. Wały Chrobrego, z charakterystycznym fontannami i rzeźbami, to ulubione miejsce spacerów mieszkańców i turystów. 
@@ -211,6 +212,13 @@
       </td>
       </tr>
     </table>
+    <img src="Ciekawostka.jpg" alt="Ciekawostka" id="img_ciekawostka" width ="300" height="240">
+    <p id="ciekawostka" class="ciekawostka">Szczecin jest trzecim co do wielkości miastem w Polsce 
+      – jego powierzchnia zajmuje 301 km2 (czyli 0,1% powierzchni Polski), znajduje się tu też czwarte 
+      co do wielkości jezioro w Polsce – Jezioro Dąbie, oraz trzeci pod względem wielkości w Europie i 
+      największy w Polsce cmentarz – Szczeciński Cmentarz Centralny</p>
+    <p class="ciekawostka" id="ciekawostka2">Ciekawostką jest, że Adolf Hitler jest honorowym obywatelem Szczecina. Tytuł ten władze Szczecina
+       przyznały Hitlerowi 4 kwietnia 1933 roku.</p>  
   <h3>Moja Lista</h3>
   <input id="attractionInsertInput" type="text">
   <button id="attractionInsertButton">PRZEŚLIJ</button>

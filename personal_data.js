@@ -15,3 +15,5 @@ function completeForm() {
         form.idPhone.value = "+48 999-999-999";
     }
 }
+
+

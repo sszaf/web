@@ -7,23 +7,27 @@
     <meta name="author" content="Szymon Szafraniec, Leszek Kryzar">
     <link rel="stylesheet" href="design.css">
     <script src="personal_data.js" defer></script>
+    <script src="zad5js2.js" defer></script>
     <title>Dane Osobowe</title>
 </head>
 <body class="personal_data_page">
-    <form method="post" action="extra_data.html" autocomplete="on"  name="personalDataForm">
+    <form method="post" action="extra_data.html" autocomplete="on"  name="personalDataForm" id="personal_form">
         <p>
             <label for="idName">Imię:</label>
             <input id="idName" name="Name" type="text" size="30" maxlength="25"  placeholder="Jan" autocomplete="given-name" class="personal"   autofocus>
+            <p id="name_input" class="helpP">Wpisz  swoje imie</p>
         </p>
 
         <p>
             <label for="idSurname">Nazwisko:</label>
             <input id="idSurname" name="Surname" type="text" size="30" maxlength="25"  placeholder="Kowalski" autocomplete="family-name" required>
+            <p id="surname_input" class="helpP">Wpisz  swoje nazwisko</p>
         </p>
 
         <p>
             <label for="idMonthOfBirth">Wybierz miesiąc urodzenia: </label>
             <input list="months" name="month_of_birth" id="idMonthOfBirth" placeholder="Styczeń" autocomplete="bday-month">
+            <p id="month_input" class="helpP">Wpisz  miesiąc urodzenia</p>
 
             <datalist id="months">
                 <option value="Styczeń">
@@ -45,12 +49,14 @@
             <label for="idEmail">E-mail &#128231;</label>
             <input  id="idEmail" name="Email" type="email" size="30" maxlength="25" placeholder="kowalskijan@gmail.com" 
             autocomplete="email" required>
+            <p id="mail_input" class="helpP">Wpisz  swoj email</p>
         </p>
 
         <p>
             <label for="idPhone">Telefon &phone;:</label>
             <input id="idPhone" name="Telefon" type="tel" pattern="^\+\d{2} \d{3}-\d{3}-\d{3}$" 
             size="30" maxlength="15" placeholder="+XX XXX-XXX-XXX" autocomplete="tel">
+            <p id="phone_input" class="helpP">Wpisz  swoj numer telefonu zgodny z paternem</p>
         </p>
         <input type="submit" value="Prześlij">
         <input type="reset" value="Wyczyść">
