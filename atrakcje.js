@@ -7,6 +7,7 @@ const combineListsButton = document.getElementById("combineListsButton");
     const combinedList = document.getElementById("combinedList");
     const addTextButton = document.getElementById("addTextButton");
     const resetListButton = document.getElementById("resetListButton");
+    const imagesOnPageButton = document.getElementById("imagesOnPageButton");
     const attractionInsertButton = document.getElementById(
         "attractionInsertButton"
         );
@@ -21,6 +22,7 @@ const combineListsButton = document.getElementById("combineListsButton");
     replaceButton.addEventListener("click",replaceItem);
     addTextButton.addEventListener("click",addText);
     resetListButton.addEventListener("click",resetList);
+    imagesOnPageButton.addEventListener("click",imagesInfo);
     
     
     function insertAttraction() {
@@ -183,4 +185,15 @@ function resetList() {
         combinedList.removeChild(item);
     })
 }
+
+
+function imagesInfo() {
+    const images = document.images;
+    const imageArray = Array.from(images);
+
+    imageArray.forEach(image => {
+        document.writeln(image.alt + " " + image.src + "<br>");
+    })
+}
+
   
