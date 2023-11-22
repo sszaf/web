@@ -28,10 +28,16 @@ function scrollUp(e) {
     window.scrollTo(0,0);
   }
 }
+function alt(e){
+  const alt = document.getElementById("alt");
+  if(e.altKey){
+    alt.scrollIntoView();
+  }
+}
 
 function leftSide(e){
   const screenWidth = window.innerWidth;
-  const background = document.getElementById("atrakcje")
+  const background = document.getElementById("atrakcje");
   if (e.clientX < screenWidth / 2) {
     background.style.backgroundColor ="grey";
   }
@@ -95,6 +101,7 @@ function mouseoutfun() {
 window.addEventListener("keydown", keyCode);
 window.addEventListener("keydown", scrollDown);
 window.addEventListener("keydown", scrollUp);
+window.addEventListener("keydown", alt);
 document.addEventListener("mousemove",leftSide);
 document.addEventListener("mousemove", upSide);
 document.addEventListener("mousemove", screenXx);
