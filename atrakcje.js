@@ -154,11 +154,25 @@ function replaceItem() {
 function addText() {
     const newValue = window.prompt("Wprowadź teskt: ");
     if (newValue) {
-        const newListItem = document.createElement("li");
-        const textNode = document.createTextNode(newValue);
-        newListItem.appendChild(textNode);
+        // const newListItem = document.createElement("li");
+        // const textNode = document.createTextNode(newValue);
+        // newListItem.appendChild(textNode);
         const firstItem = combinedList.firstChild;
-        combinedList.insertBefore(newListItem, firstItem);
+        // combinedList.insertBefore(newListItem, firstItem);
+
+
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        //checkbox.id = `item${index + 1}`;
+        //checkbox.name = "items";
+        //checkbox.value = newValue;
+        const label = document.createElement("label");
+        //label.setAttribute("for", `item${index + 1}`);
+        label.textContent = newValue;
+        const listItem = document.createElement("li");
+        listItem.appendChild(checkbox);
+        listItem.appendChild(label);
+        combinedList.insertBefore(listItem,firstItem);
     } else {
         window.alert("Nieprawidłowe wejście!");
     }

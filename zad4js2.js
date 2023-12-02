@@ -39,7 +39,7 @@ function leftSide(e){
   const screenWidth = window.innerWidth;
   const background = document.getElementById("atrakcje");
   if (e.clientX < screenWidth / 2) {
-    background.style.backgroundColor ="grey";
+    background.style.backgroundColor ="green";
   }
   else{
     background.style.backgroundColor = "white";
