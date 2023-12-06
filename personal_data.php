@@ -11,7 +11,14 @@
     <title>Dane Osobowe</title>
 </head>
 <body class="personal_data_page">
-    <form method="post" action="extra_data.html" autocomplete="on"  name="personalDataForm" id="personal_form">
+<!-- <?php
+// session_start();
+//     if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        
+       
+//     }
+    ?> -->
+    <form method="post" action="extra_data.php" autocomplete="on"  name="personalDataForm" id="personal_form">
         <p>
             <label for="idName">Imię:</label>
             <input id="idName" name="Name" type="text" size="30" maxlength="25"  placeholder="Jan" autocomplete="given-name" class="personal"   autofocus>
