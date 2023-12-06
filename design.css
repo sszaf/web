@@ -98,14 +98,15 @@ img.pogon{
 
 .newsletter_page{
     text-align: center;
-    color:aqua;
+    color:white;
     font-size: 18px;
     font-weight: bolder;
-    background-image: url(szczecin_drawing.jpg);
+    /* background-image: url(szczecin_drawing.jpg);
     background-repeat: repeat-x;
     background-position: right top;
-    background-attachment: fixed;
+    background-attachment: fixed; */
 }
+
 
 .personal_data_page{
     text-align: center;
@@ -237,11 +238,11 @@ input[type="checkbox"]:checked + label {    /*zaznaczenie tego co jest zaznaczon
     color: black;
 }
 
-input:disabled {
-    background-color: lightgray;   /*zaznaczenie na szaro nieaktywnego inputu newsleter email */
+/* input:disabled {
+    background-color: lightgray;
     color: #999;         
     cursor: not-allowed;
-}
+} */
 
 p.empty:empty {
     background-color: lightyellow;
@@ -271,13 +272,13 @@ a:visited {
     font-weight: bold;
   }
   .scorers li:nth-last-child(2) {
-    background-color: yellow;  /* przedostatni element tej listy na zółto */
-  }
+      background-color: yellow;  /* przedostatni element tej listy na zółto */
+    }
 
    ol:not(.test){
     color: red;  /* oreder listy króre nie należą do klasy test na czerwono */
-  }
-  
+}
+
   a:link{
     color: pink;  /* olinki na różowo */
   }
@@ -340,13 +341,13 @@ a:visited {
     background-color: #21618c; /* Kolor tła podczas kliknięcia */
   }
   .game{
-    background-color: #999;
+      background-color: #999;
   }
 
  #preferences_container {
     text-align: center;
     margin-top: 50px;
- }
+}
 
  .text_color_setup {
     margin-top: 20px;
@@ -355,7 +356,7 @@ a:visited {
  .bg_color_setup {
     margin-top: 20px;
  }
-
+ 
  .font_family_setup {
     margin-top: 20px;
  }
@@ -366,6 +367,10 @@ a:visited {
     display: none;
 }
 
+.error {
+    color: red;
+    font-size: 10px;
+}
 
 
 
