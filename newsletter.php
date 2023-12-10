@@ -16,7 +16,6 @@
 
     <?php
     $nameErr = $surnameErr = $emailErr = $phoneErr = $genderErr = $interestErr = $restErr = "";
-    $rest = 0;
     $name = $surename = $email = $phone = $gender = $rest = "";
     define("INTEREST_NUMBER",7,true);
     $interest = array();

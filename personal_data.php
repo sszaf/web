@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -13,6 +16,23 @@
 <body class="personal_data_page">
 
 
+<?php
+define("sessionExpiryTime", 120, true);
+
+if (isset($_SESSION["loginTimeStamp"]) && (time() - $_SESSION["loginTimeStamp"] > sessionExpiryTime)) {
+    setcookie("loginfo","",time() - 99);
+    session_unset(); 
+    session_destroy();
+}
+
+
+if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] !== true) {
+    header("Location: authorization.php");
+    exit;
+}
+?>
+
+<span class="usernameInfo"><?php echo $_SESSION["username"];?></span><br>
     
     <form method="post" action="extra_data.php" autocomplete="on"  name="personalDataForm" id="personal_form">
         <p>

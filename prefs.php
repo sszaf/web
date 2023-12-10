@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -10,6 +13,24 @@
     <title>Preferencje</title>
 </head>
 <body>
+    <?php
+    
+    define("sessionExpiryTime", 120, true);
+
+if (isset($_SESSION["loginTimeStamp"]) && (time() - $_SESSION["loginTimeStamp"] > sessionExpiryTime)) {
+    setcookie("loginfo","",time() - 99);
+    session_unset(); 
+    session_destroy();
+}
+
+
+if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] !== true) {
+    header("Location: authorization.php");
+    exit;
+}
+    
+    ?>
+    <span class="usernameInfo"><?php echo $_SESSION["username"];?></span>
     <h1>PREFERENCJE</h1>
         <div id="preferences_container">
             <label class="bg_color_setup" for="bg_color_input">Kolor tła:</label>
