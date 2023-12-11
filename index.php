@@ -10,8 +10,40 @@
     <title>Szczecin</title>
 </head>
 <body>
+<?php
+include 'preferences.php';
+// $preferences = getPreferencesFromCookie();
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') { 
+    // Pobranie danych z formularza
+    $selectedFont = $_POST['FontStyle'];
+    $selectedFontColor = $_POST['textColor'];
+    $selectedBgColor = $_POST['BGColor'];
+    echo $selectedBgColor;
+    echo "post";
+    
+
+    // Ustawienie ciastka z preferencjami użytkownika
+    setPreferencesCookie($selectedFont, $selectedFontColor, $selectedBgColor);
+} else {
+    // Odczytanie preferencji użytkownika z ciastka
+    $preferences = getPreferencesFromCookie();
+    $selectedFont = $preferences['font'];
+    $selectedFontColor = $preferences['font_color'];
+    $selectedBgColor = $preferences['bg_color'];
+    echo $preferences['font'];  
+    echo "niePost";
+}
+
+?>
 
     <style>
+
+        body {
+                font-family: <?php echo $selectedFont; ?>;
+                color: <?php echo $selectedFontColor; ?>;
+                background-color: <?php echo $selectedBgColor; ?>;
+                }
         
         #history_paragraph{
             font-size: 16pt;
@@ -79,6 +111,8 @@
                 <li><a href="authorization.php">Logowanie</a></li>
                 <li><a href="authorization_info.php">Informacja logowania</a></li>
                 <li><button id="ratingButton">OCEŃ</button></li>
+                <li><a href="diagnostic.php">Diagnostyczna</a></li>
+                
                 
             </ul>
         </nav>

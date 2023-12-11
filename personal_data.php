@@ -30,7 +30,23 @@ if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] !== true) {
     header("Location: authorization.php");
     exit;
 }
+
+
+include 'preferences.php';
+
+// Odczytanie preferencji użytkownika z ciastka
+$preferences = getPreferencesFromCookie();
+
 ?>
+ <style>
+
+        body {
+                    font-family: <?php echo $preferences['font']; ?>;
+                    color: <?php echo $preferences['font_color']; ?>;
+                    background-color: <?php echo $preferences['bg_color']; ?>;
+
+                }
+    </style>    
 
 <span class="usernameInfo"><?php echo $_SESSION["username"];?></span><br>
     
