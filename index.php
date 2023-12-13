@@ -12,37 +12,38 @@
 <body>
 <?php
 include 'preferences.php';
-// $preferences = getPreferencesFromCookie();
+$preferences = getPreferencesFromCookie();
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') { 
-    // Pobranie danych z formularza
-    $selectedFont = $_POST['FontStyle'];
-    $selectedFontColor = $_POST['textColor'];
-    $selectedBgColor = $_POST['BGColor'];
-    echo $selectedBgColor;
-    echo "post";
+// if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['FontStyle'])) { 
+//     // Pobranie danych z formularza
+//     $selectedFont = $_POST['FontStyle'];
+//     $selectedFontColor = $_POST['textColor'];
+//     $selectedBgColor = $_POST['BGColor'];
+//     // echo $selectedBgColor;
+//     // echo "post";
+//     unset($_POST['FontStyle']);
     
 
-    // Ustawienie ciastka z preferencjami użytkownika
-    setPreferencesCookie($selectedFont, $selectedFontColor, $selectedBgColor);
-} else {
-    // Odczytanie preferencji użytkownika z ciastka
-    $preferences = getPreferencesFromCookie();
-    $selectedFont = $preferences['font'];
-    $selectedFontColor = $preferences['font_color'];
-    $selectedBgColor = $preferences['bg_color'];
-    echo $preferences['font'];  
-    echo "niePost";
-}
+//     // Ustawienie ciastka z preferencjami użytkownika
+//     setPreferencesCookie($selectedFont, $selectedFontColor, $selectedBgColor);
+// } else {
+//     // Odczytanie preferencji użytkownika z ciastka
+//     $preferences = getPreferencesFromCookie();
+//     $selectedFont = $preferences['font'];
+//     $selectedFontColor = $preferences['font_color'];
+//     $selectedBgColor = $preferences['bg_color'];
+//     // echo $preferences['font'];  
+//     // echo "niePost";
+// }
 
 ?>
 
     <style>
 
         body {
-                font-family: <?php echo $selectedFont; ?>;
-                color: <?php echo $selectedFontColor; ?>;
-                background-color: <?php echo $selectedBgColor; ?>;
+            font-family: <?php echo $preferences['font']; ?>;
+            color: <?php echo $preferences['font_color']; ?>;
+            background-color: <?php echo $preferences['bg_color']; ?>;
                 }
         
         #history_paragraph{
@@ -84,18 +85,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             </li>   
                     </ul>
                 </li>
-                <li><a href="pogon.html">POGOŃ SZCZECIN</a>
+                <li><a href="pogon.php">POGOŃ SZCZECIN</a>
                     <ul>
                         <li>KLUB
                             <ul>
-                                <li><a href="pogon.html#photo">Drużyna</a></li>
-                                <li><a href="pogon.html#zespol">Skład</a></li>
+                                <li><a href="pogon.php#photo">Drużyna</a></li>
+                                <li><a href="pogon.php#zespol">Skład</a></li>
                             </ul>
                         </li>    
                         <li>SEZON
                             <ul>
-                                <li><a href="pogon.html#statystyki">Statystyki</a></li>
-                                <li><a href="pogon.html#terminarz">Terminarz</a></li>
+                                <li><a href="pogon.php#statystyki">Statystyki</a></li>
+                                <li><a href="pogon.php#terminarz">Terminarz</a></li>
                             </ul>
                         </li>    
                     </ul>
@@ -107,7 +108,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </ul>
                 </li>
                 <li><a href="prefs.php">PREFERENCJE</a></li>
-                <li><a href="game.html">Gra</a></li>
+                <li><a href="game.php">Gra</a></li>
                 <li><a href="authorization.php">Logowanie</a></li>
                 <li><a href="authorization_info.php">Informacja logowania</a></li>
                 <li><button id="ratingButton">OCEŃ</button></li>
@@ -253,7 +254,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <p>Barwami Pogoni Szczecin są granatowy oraz bordowy. Stanowią one nawiązanie do herbu i flagi miasta.</p>
             </aside>
             <br>
-            <a href = "pogon.html">
+            <a href = "pogon.php">
                 <img src="pogoń.jpg" class="pogon" alt="Zdjęcie przedstawiające logo Pogonii Szczecin" height="75" width="75">
             </a>
         </div>

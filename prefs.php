@@ -60,7 +60,7 @@ include 'preferences.php';
     <span class="usernameInfo"><?php echo $_SESSION["username"];?></span>
     <h1>PREFERENCJE</h1>
     <div id="preferences_container">
-        <form method="post" action="index.php">
+        <form method="post" action="diagnostic.php">
             <label class="bg_color_setup" for="bg_color_input">Kolor tła:</label>
             <input class="bg_color_setup" id="bg_color_input" name="BGColor" type="color">
             <br>

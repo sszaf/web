@@ -11,6 +11,20 @@
   <title>Pogoń</title>
 </head>
 <body>
+<?php
+include 'preferences.php';
+
+// Odczytanie preferencji użytkownika z ciastka
+$preferences = getPreferencesFromCookie();
+?>
+<style>
+        body {
+            font-family: <?php echo $preferences['font']; ?>;
+            color: <?php echo $preferences['font_color']; ?>;
+            background-color: <?php echo $preferences['bg_color']; ?>;
+        }
+    </style>
+
   <h1>Pogoń Szczecin Duma Pomorza</h1>
   <img  id="photo" src="https://ocdn.eu/sport-images-transforms/1/Tnxk9lGaHR0cHM6Ly9vY2RuLmV1L3B1bHNjbXMvTURBXy80OTcxMDIxOC0xZjg2LTRlYjMtOTk3MS1iZjkzOTIzZTRjNDQuanBlZ5OVAwDMnM0TiM0K_JUCzQSwAMLDkwmmNzVhYWFhBt4AAqEwAaExAQ/pogon-szczecin.jpeg" alt="Drużyna Pogoni" width ="1200" height="640">
   <a href="#section1">Przejdź do sekcji terminarzy</a>

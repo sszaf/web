@@ -341,9 +341,9 @@ a:visited {
   .buttonCheck:active {
     background-color: #21618c; /* Kolor tła podczas kliknięcia */
   }
-  .game{
+  /* .game{
       background-color: #999;
-  }
+  } */
 
  #preferences_container {
     text-align: center;

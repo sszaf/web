@@ -5,11 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="author" content="Szymon Szafraniec, Leszek Kryzar">
   <meta name="keywords" content="Różne gry zgadywanki">
-  <link rel="stylesheet" href="design.css">
+  <!-- <link rel="stylesheet" href="design.css"> -->
   <script src="scriptsLeh.js" defer></script>
   <title>Game</title>
 </head>
 <body class="game">
+<?php
+include 'preferences.php';
+
+// Odczytanie preferencji użytkownika z ciastka
+$preferences = getPreferencesFromCookie();
+?>
+ <style>
+        body {
+            font-family: <?php echo $preferences['font']; ?>;
+            color: <?php echo $preferences['font_color']; ?>;
+            background-color: <?php echo $preferences['bg_color']; ?>;
+        }
+    </style>
+
   <h1>Gra pierwsza</h1>
   <button id="startGame1" class="buttonGame" onclick="startGame1()">Zacznij grę</button>
   <p>Komuter losuje miesiąc a ty masz 3 próby by zgadnąć</p>
