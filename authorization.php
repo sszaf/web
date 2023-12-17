@@ -15,7 +15,13 @@ setcookie("loginfo", session_id(), time() + 120);
 <body>
 <?php
 
-define("sessionExpiryTime", 120, true);
+$server = "localhost";
+$db_user = "root";
+$db_password = "";
+$db_name = "DB";
+
+
+define("sessionExpiryTime", 60 * 15, true);
 
 if (isset($_SESSION["loginTimeStamp"]) && (time() - $_SESSION["loginTimeStamp"] > sessionExpiryTime)) {
     setcookie("loginfo","",time() - 99);
@@ -23,14 +29,6 @@ if (isset($_SESSION["loginTimeStamp"]) && (time() - $_SESSION["loginTimeStamp"] 
     session_destroy();
 }
 
-
-$logins = 
-[
-    "user1" => "P@ssw0rd",
-    "user2" => "Pass",
-    "user3" => "user12345",
-    "user4" => "Abc123"
-];
 
 $username = $password = "";
 $username_error = $password_error = "";
@@ -53,20 +51,56 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if ($form_filled) {
-        if (!array_key_exists($username,$logins)) {
-            $username_error = "Niepoprawna nazwa użytkownika!";
-        } else {
-            if ($logins[$username] !== $password) {
-                $password_error = "Niepoprawne hasło!";
-            } else {
-                $_SESSION["loggedIn"] = true;
-                $_SESSION["loginTimeStamp"] = time();
-                $_SESSION["username"] = $username;
-                header("Location: index.php");
-                exit;
-            }
+        $conn = mysqli_connect($server, $db_user, $db_password, $db_name);
 
+        if (!$conn) {
+            die("Connection failed: " . mysqli_error($conn));
         }
+
+        $sql = "SELECT * FROM Users WHERE username = ?";
+        $stmt = mysqli_prepare($conn, $sql);
+
+        if ($stmt) {
+            mysqli_stmt_bind_param($stmt, "s", $username);
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt);
+        
+            if ($result) {
+                $row = mysqli_fetch_row($result);
+        
+                if ($row) {
+                   if ($row[2] !== hash('sha256',$password)) $password_error = "Błędne hasło!";
+                   else {
+                        $_SESSION["loggedIn"] = true;
+                        $_SESSION["loginTimeStamp"] = time();
+                        $_SESSION["username"] = $username;
+                        header("Location: index.php");
+                exit;
+                   }
+                } else {
+                    $username_error = "Niepoprawny login!";
+                }
+            } else {
+                echo "Error on query processing: " . mysqli_error($conn);
+            }
+        
+            mysqli_stmt_close($stmt);
+        }
+
+        // if () {
+        //     $username_error = "Niepoprawna nazwa użytkownika!";
+        // } else {
+        //     if () {
+        //         $password_error = "Niepoprawne hasło!";
+        //     } else {
+        //         $_SESSION["loggedIn"] = true;
+        //         $_SESSION["loginTimeStamp"] = time();
+        //         $_SESSION["username"] = $username;
+        //         header("Location: index.php");
+        //         exit;
+        //     }
+
+        // }
     }
 }
 
@@ -81,7 +115,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         <label for="password">Hasło:</label>
         <input type="password" id="password" name="password">
-        <span class="error">*<?php echo $password_error?></span>
+        <span class="error">*<?php echo $password_error;?></span>
         
         <br><br>
         

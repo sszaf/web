@@ -14,7 +14,7 @@ session_start();
 
 
 <?php
-define("sessionExpiryTime", 120, true);
+define("sessionExpiryTime", 60 * 15, true);
 
 if (isset($_SESSION["loginTimeStamp"]) && (time() - $_SESSION["loginTimeStamp"] > sessionExpiryTime)) {
     setcookie("loginfo","",time() - 99);
