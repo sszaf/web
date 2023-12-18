@@ -1,6 +1,6 @@
 <?php
 session_start();
-setcookie("loginfo", session_id(), time() + 120);
+setcookie("loginfo", session_id(), time() + 60 * 15);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,6 +14,8 @@ setcookie("loginfo", session_id(), time() + 120);
 </head>
 <body>
 <?php
+
+include 'db_service.php';
 
 $server = "localhost";
 $db_user = "root";
@@ -57,50 +59,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             die("Connection failed: " . mysqli_error($conn));
         }
 
-        $sql = "SELECT * FROM Users WHERE username = ?";
-        $stmt = mysqli_prepare($conn, $sql);
+        $row = userData($conn, $username);
 
-        if ($stmt) {
-            mysqli_stmt_bind_param($stmt, "s", $username);
-            mysqli_stmt_execute($stmt);
-            $result = mysqli_stmt_get_result($stmt);
-        
-            if ($result) {
-                $row = mysqli_fetch_row($result);
-        
-                if ($row) {
-                   if ($row[2] !== hash('sha256',$password)) $password_error = "Błędne hasło!";
-                   else {
-                        $_SESSION["loggedIn"] = true;
-                        $_SESSION["loginTimeStamp"] = time();
-                        $_SESSION["username"] = $username;
-                        header("Location: index.php");
+        if ($row) {
+            if ($row[2] !== hash('sha256',$password)) $password_error = "Błędne hasło!";
+            else {
+                 $_SESSION["loggedIn"] = true;
+                 $_SESSION["loginTimeStamp"] = time();
+                 $_SESSION["username"] = $username;
+                 header("Location: index.php");
                 exit;
-                   }
-                } else {
-                    $username_error = "Niepoprawny login!";
-                }
-            } else {
-                echo "Error on query processing: " . mysqli_error($conn);
             }
-        
-            mysqli_stmt_close($stmt);
-        }
-
-        // if () {
-        //     $username_error = "Niepoprawna nazwa użytkownika!";
-        // } else {
-        //     if () {
-        //         $password_error = "Niepoprawne hasło!";
-        //     } else {
-        //         $_SESSION["loggedIn"] = true;
-        //         $_SESSION["loginTimeStamp"] = time();
-        //         $_SESSION["username"] = $username;
-        //         header("Location: index.php");
-        //         exit;
-        //     }
-
-        // }
+         } else {
+             $username_error = "Niepoprawny login!";
+         }
     }
 }
 

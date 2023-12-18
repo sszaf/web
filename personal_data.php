@@ -31,16 +31,45 @@ session_start();
 //     exit;
 // }
 
+include 'db_service.php';
+
+define("username_index", 1, true);
+define("password_index", 3, true);
+define("name_index", 4, true);
+define("surname_index", 5, true);
+define("email_index", 6, true);
+define("phone_index", 7, true);
+define("bmonth_index", 8, true);
 
 $server = "localhost";
 $db_user = "root";
 $db_password = "";
 $db_name = "DB";
 
-$insert_message = "x";
+$insert_message = "";
+$logged_user = "";
 
 $nameErr = $surnameErr = $emailErr = $phoneErr = $bmonthErr = $usernameErr = $passwordErr = "";
-$name = $surename = $email = $phone = $bmonth = $username = $password  = "";
+$name = $surname = $email = $phone = $bmonth = $username = $password  = $password_plain_text = "";
+
+    if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === True) {
+        $logged_user = $_SESSION['username'];
+
+        $conn = mysqli_connect($server, $db_user, $db_password, $db_name);
+        mysqli_set_charset($conn, "utf8");
+
+        $row = userData($conn, $logged_user);
+
+        if($row) {
+            $username = $row[username_index];
+            $password = $row[password_index];
+            $name = $row[name_index];
+            $surname = $row[surname_index];
+            $email = $row[email_index];
+            $phone = $row[phone_index];
+            $bmonth = $row[bmonth_index];
+        }
+    }
 
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -123,11 +152,10 @@ $name = $surename = $email = $phone = $bmonth = $username = $password  = "";
             $usernameErr,
             $passwordErr
         ];
+
         if (no_errors_occured($errors)) {
-            $insert_message = "no errors";
-            if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] === false) {
+            //if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] === false) {
                 $conn = mysqli_connect($server, $db_user, $db_password, $db_name);
-                $insert_message = "no logged";
 
                 if (!$conn) {
                     die("Connection failed: " . mysqli_error($conn));
@@ -138,24 +166,46 @@ $name = $surename = $email = $phone = $bmonth = $username = $password  = "";
                     if ($result) {
                         $usernames = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-                        if (!username_exists($usernames, $username)) {
+                        if ((isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === true) || 
+                        !username_exists($usernames, $username)) {
 
                             $hashed_password = hash("sha256", $password);
 
-                            $query = "INSERT INTO Users (username, password, name, surname, email, phone, birth_month) 
-                            VALUES (?, ?, ?, ?, ?, ?, ?)";
 
-                            $stmt = mysqli_prepare($conn, $query);
+                            $query = $stmt = "";
+                            if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === true) {
+                                    $query = "UPDATE Users 
+                                    SET username = ?, password = ?, password_plain_text = ?, 
+                                    name = ?, surname = ?, email = ?,
+                                    phone = ?, birth_month = ? 
+                                    WHERE username = ?";
 
-                            mysqli_stmt_bind_param($stmt, "sssssss", $username, $hashed_password, 
-                            $name, $surname, $email, $phone, $bmonth);
+                                    $stmt = mysqli_prepare($conn, $query);
+
+                                    mysqli_stmt_bind_param($stmt, "sssssssss", $username, $hashed_password, 
+                                    $password, $name, $surname, $email, $phone, $bmonth, $logged_user);
+
+                            } else {
+                                $query = "INSERT INTO Users (username, password, password_plain_text, 
+                                name, surname, email, phone, birth_month) 
+                                VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+                            
+                                $stmt = mysqli_prepare($conn, $query);
+
+                                mysqli_stmt_bind_param($stmt, "ssssssss", $username, $hashed_password, 
+                                $password, $name, $surname, $email, $phone, $bmonth);
+                            }
+
+
 
                             $success = mysqli_stmt_execute($stmt);
 
                             if ($success) {
-                                $insert_message = "Pomyślnie zarejestrowano!";
+                                //$insert_message = "Wykonano pomyślnie!";
+                                $_SESSION['username'] = $username;
+                                $logged_user = $username;
                             } else {
-                                $insert_message = "Niepowodzenie rejstracji:" . mysqli_error($conn);
+                                $insert_message = "Niepowodzenie:" . mysqli_error($conn);
                             }
 
                             mysqli_close($conn);
@@ -164,15 +214,10 @@ $name = $surename = $email = $phone = $bmonth = $username = $password  = "";
                 }
 
                 
-            }
+            //}
         }
     }
 
-
-    // function no_errors_occured() {
-    //     return !($nameErr || $surnameErr || $emailErr || 
-    //     $phoneErr || $bmonthErr || $usernameErr || $passwordErr);
-    // }
 
     function no_errors_occured($errors) {
         $filteredArray = array_filter($errors, function ($error) {
@@ -229,64 +274,70 @@ $preferences = getPreferencesFromCookie();
     <form method="post" action=<?php echo $_SERVER["PHP_SELF"];?> name="personalDataForm" id="personal_form">
         <p>
             <label for="idName">Imię:</label>
-            <input id="idName" name="Name" type="text" size="30" maxlength="25"  placeholder="Jan" autocomplete="given-name" class="personal"   autofocus>
+            <input id="idName" name="Name" type="text" size="30" maxlength="25"  placeholder="Jan" 
+            autocomplete="given-name" class="personal"  value="<?php echo $name;?>" autofocus>
             <span class="error">*<?php echo $nameErr;?></span>
             <p id="name_input" class="helpP">Wpisz  swoje imię</p>
         </p>
 
         <p>
             <label for="idSurname">Nazwisko:</label>
-            <input id="idSurname" name="Surname" type="text" size="30" maxlength="25"  placeholder="Kowalski" autocomplete="family-name">
+            <input id="idSurname" name="Surname" type="text" size="30" maxlength="25"  
+            placeholder="Kowalski" value="<?php echo $surname;?>" autocomplete="family-name">
             <span class="error">*<?php echo $surnameErr;?></span>
             <p id="surname_input" class="helpP">Wpisz  swoje nazwisko</p>
         </p>
 
         <p>
             <label for="idMonthOfBirth">Wybierz miesiąc urodzenia: </label>
-            <input list="months" name="month_of_birth" id="idMonthOfBirth" placeholder="Styczeń" autocomplete="bday-month">
+            <input list="months" name="month_of_birth" id="idMonthOfBirth" 
+            placeholder="Sty" value="<?php echo $bmonth;?>" autocomplete="bday-month">
             <span class="error">*<?php echo $bmonthErr;?></span>
             <p id="month_input" class="helpP">Wpisz  miesiąc urodzenia</p>
 
             <datalist id="months">
-                <option value="Styczeń">
-                <option value="Luty">
-                <option value="Marzec">
-                <option value="Kwiecień">
+                <option value="Sty">
+                <option value="Lut">
+                <option value="Mar">
+                <option value="Kwi">
                 <option value="Maj">
-                <option value="Czerwiec">
-                <option value="Lipiec">
-                <option value="Sierpień">
-                <option value="Wrzesień">
-                <option value="Październik">
-                <option value="Listopad">
-                <option value="Grudzień">
+                <option value="Cze">
+                <option value="Lip">
+                <option value="Sie">
+                <option value="Wrz">
+                <option value="Paź">
+                <option value="Lis">
+                <option value="Gru">
             </datalist>
         </p>
         
         <p>
             <label for="idEmail">E-mail &#128231;</label>
-            <input  id="idEmail" name="Email" type="email" size="30" maxlength="25" placeholder="kowalskijan@gmail.com" 
-            autocomplete="email">
+            <input  id="idEmail" name="Email" type="email" size="30" maxlength="25" 
+            placeholder="kowalskijan@gmail.com" value="<?php echo $email;?>" autocomplete="email">
             <span class="error">*<?php echo $emailErr;?></span>
             <p id="mail_input" class="helpP">Wpisz  swoj email</p>
         </p>
 
         <p>
             <label for="idPhone">Telefon &phone;:</label>
-            <input id="idPhone" name="Phone" type="tel" size="30" maxlength="15" placeholder="XXX-XXX-XXX" autocomplete="tel">
+            <input id="idPhone" name="Phone" type="tel" size="30" maxlength="15" 
+            placeholder="XXX-XXX-XXX" value="<?php echo $phone;?>" autocomplete="tel">
             <span class="error">*<?php echo $phoneErr;?></span>
-            <p id="phone_input" class="helpP">Wpisz  swoj numer telefonu zgodny z paternem</p>
+            <p id="phone_input" class="helpP">Wpisz  swoj numer telefonu</p>
         </p>
 
         <p>
             <label for="idUsername">Nazwa użytkownika:</label>
-            <input id="idUsername" name="Username" type="text" placeholder="Nazwa użytkownika">
+            <input id="idUsername" name="Username" type="text" 
+            value="<?php echo $username;?>" placeholder="Nazwa użytkownika">
             <span class="error">*<?php echo $usernameErr;?></span>
         </p>
 
         <p>
             <label for="idPassword">Hasło:</label>
-            <input id="idPassword" name="Password" type="password" placeholder="Hasło">
+            <input id="idPassword" name="Password" type="password" 
+            value="<?php echo $password;?>" placeholder="Hasło">
             <span class="error">*<?php echo $passwordErr;?></span>
         </p>
         <input type="submit" value="Prześlij">
