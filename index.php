@@ -113,6 +113,8 @@ $preferences = getPreferencesFromCookie();
                 <li><a href="authorization_info.php">Informacja logowania</a></li>
                 <li><button id="ratingButton">OCEŃ</button></li>
                 <li><a href="diagnostic.php">Diagnostyczna</a></li>
+                <li><a href="db_table.php">Tabela</a></li>
+                <li><a href="logout.php">Wyloguj</a></li>
                 
                 
             </ul>
