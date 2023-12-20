@@ -384,6 +384,11 @@ a:visited {
     position: fixed;
 }
 
+.error_message {
+    color : red;
+    font-size : 20px;
+}
+
 
 
 

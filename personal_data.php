@@ -126,7 +126,10 @@ $name = $surname = $email = $phone = $bmonth = $username = $password  = $passwor
         } else {
             $username = test_input($_POST["Username"]);
 
-            if (!preg_match("/^[a-zA-Z][a-zA-Z0-9_!@#$%^&]{3,19}$/",$username)) {
+            //$pattern = "/^[a-zA-Z][a-zA-Z0-9_!@#$%^&]{3,19}$/";
+            $pattern = "/^[a-zA-Z][a-zA-Z0-9" . quotemeta("_!@#$%^&") . "]{3,19}$/";
+
+            if (!preg_match($pattern,$username)) {
                 $usernameErr = "Niepoprawna nazwa użytkownika";
             }
         }
@@ -203,13 +206,15 @@ $name = $surname = $email = $phone = $bmonth = $username = $password  = $passwor
                             if ($success) {
                                 //$insert_message = "Wykonano pomyślnie!";
                                 $_SESSION['username'] = $username;
-                                $logged_user = $username;
+                                include "logout.php";
                             } else {
                                 $insert_message = "Niepowodzenie:" . mysqli_error($conn);
                             }
 
                             mysqli_close($conn);
-                        } 
+                        } else {
+                            $insert_message = "Niepowodzenie";
+                        }
                     }
                 }
 
@@ -343,10 +348,8 @@ $preferences = getPreferencesFromCookie();
         <input type="submit" value="Prześlij">
         <input type="reset" value="Wyczyść">
     </form>
-
-    <span><?php echo $insert_message;?></span>
-
-
     <button id="completeButton">PRZYKŁADOWE DANE</button>
+    <br><br>
+    <span class="error_message"><?php echo $insert_message;?></span>
 </body>
 </html>

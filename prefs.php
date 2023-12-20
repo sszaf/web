@@ -57,7 +57,7 @@ include 'preferences.php';
     <title>Preferencje</title>
 </head>
 <body>
-    <span class="usernameInfo"><?php echo $_SESSION["username"];?></span>
+    <span class="usernameInfo"><?php echo "Witaj, " . $_SESSION["username"];?></span>
     <h1>PREFERENCJE</h1>
     <div id="preferences_container">
         <form method="post" action="diagnostic.php">

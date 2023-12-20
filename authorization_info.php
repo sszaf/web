@@ -31,7 +31,7 @@ if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] !== true) {
 ?>
 
 <div class="loginInfo">
-    <span><?php echo $_SESSION["username"];?></span><br>
+    <span><?php echo "Witaj, " . $_SESSION["username"];?></span><br>
     <span><?php echo $_COOKIE["loginfo"];?></span><br>
     <span><?php echo sessionExpiryTime - (time() - $_SESSION["loginTimeStamp"])?></span>
 </div>
